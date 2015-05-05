@@ -1,5 +1,5 @@
 # my-projects
-This repository contains the Vagrantfile for my most relevant projects
+This repository contains the Vagrantfiles for my most relevant projects
 
 ### Projects included
 
