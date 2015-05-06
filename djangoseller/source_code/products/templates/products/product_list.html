@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_tags %}
+<script src="{% static 'products/js/ctrl.js' %}"></script>
+{% endblock head_tags %}
+
+{% block content %}
+    <div id="category_nav" class="vertinav">
+        <ul>
+        {% for category in category_list %}
+            <li><a href="/products/{{category.id}}/list">{{ category.name|capfirst }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="mango-grid" id="products_app" ng-app="productsApp">
+        <div id="productsController" ng-controller="productsController">
+            <form class="mango-form-horizontal">
+                <p>
+                    <label for="q">Sort By</label>
+                    <select id="id_ordering" name="ordering">
+                        <option value="price">Low to High</option>
+                        <option value="-price">High to Low</option>
+                    </select>
+                </p>
+                {{ filter_form.as_p }}
+            </form>
+            <script>
+   window.onload = function(){
+       $('#id_color').on('focus', function(){
+           previous_color = this.value;
+       }).change(function(){
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_color);
+           previous_color = this.value;
+       })
+       
+       $('#id_style').on('focus', function(){
+           previous_style = this.value;
+       }).change(function(){
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_style);
+           previous_style = this.value;
+       })
+   
+       $('#id_fit').on('focus', function(){ 
+           previous_fit = this.value;
+       }).change(function(){
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_fit);
+           previous_fit = this.value;
+       })
+
+       $('#id_use_type').on('focus', function(){ 
+           previous_use_type = this.value;
+       }).change(function(){ 
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_use_type);
+           previous_use_type = this.value;
+           
+       })
+
+       $('#id_ordering').change(function(){
+           angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
+       })
+   }
+var anchor = function(url){
+  alert(url);
+}
+            </script>
+            <div class="products_box">
+                <div class="mango-grid-box product_box" ng-repeat="product in data track by $index">
+                    <a href="" ng-click="goto(product.absolute_url)">
+                      <div style="height:200px; width:200px; background-color: {[{product.color}]}"></div>
+                      <!--<img width="200px" height="200px" id="{[{product.pk}]}" src="/media/{[{product.picture}]}"/>-->
+                    </a>
+                    <p>{[{ product.name }]}</p>
+                    <p>{[{ product.description }]}</p>
+                    <p>{[{ product.price }]}</p>
+                    <button class="cart_adder" ng-click="add_to_cart(product.id, '{{ csrf_token }}')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+$('.cart_adder').click(function(event){
+   $.post(
+      "{% url 'carts:add' %}",
+      {
+         product_id: $(this).data('product_id'),
+         csrfmiddlewaretoken: '{{ csrf_token }}'
+      },
+      function(data){
+          alert(data);
+      }
+   )
+   .fail(function(){ 
+      alert("I'm sorry and error occured.");
+   });
+});
+
+</script>
+{% endblock content %}

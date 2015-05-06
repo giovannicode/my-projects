@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+<title>{% block title %}Seller{% endblock title %}</title>
+<link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/mango.css' %}"/>
+<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'bower_components/angular/angular.js' %}"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block head_tags %}
+{% endblock head_tags %}
+</head>
+<body class="mango-body">
+   <div id="main_navigation" class="horinav">
+   <label for="menu" class="mango-menu-label">Menu</label>
+   <input id="menu" class="mango-menu-toggle" type="checkbox"/>
+   <ul>
+      <li><a href="{% url 'main:index' %}">Home</a></li>
+      <li><a href="{% url 'products:shirts-list' %}">Shop</a></li>
+      <li><a href="{% url 'carts:detail' %}">Cart</a></li>
+      <li><a href="{% url 'account:index' %}">Account</a>
+          <!--<ul>
+            <li><a href="#">test</a></li>
+            <li><a href="#">test</a></li> 
+            <li><a href="#">test</a></li>
+            <li><a href="#">test</a></li>
+          </ul>-->
+      </li>
+      <li><a href="{% url 'users:signup' %}">Sign up</a></li>
+      <li><a href="{% url 'users:signin' %}">Sign in</a></li>
+      <li><a href="{% url 'users:signout' %}">Sign out</a></li>
+   </ul>
+   </div>
+<div class="mango-container">
+  {% block content %}
+  {% endblock content %}
+  <footer>
+    <h4>About This Site</h4>
+    <p><a href="http://giovannicode.com">Author's site (needs updating)</a><p>
+    <p><a href="https://github.com/giovannicode/djangoseller">Source code</a><p>
+  </footer>
+</div>
+</body>
+</html>

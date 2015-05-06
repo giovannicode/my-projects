@@ -1,0 +1,162 @@
+// FORM SETTINGS
+$form-border: 1px solid hsl(0, 0%, 70%);
+$form-border-radius: 2px;
+$form-padding: 20px;
+$form-font-size: 100%;
+$form-font-family: $base-font-family;
+
+$form-vertical-p-margin-bottom: 25px;
+$form-vertical-label-color: hsl(0, 0%, 20%);
+$form-vertical-label-font-weight: bold;
+
+$form-horizontal-width: auto;
+$form-horizontal-p-margin-right: 10px;
+
+// Form extenders.
+%textbox {
+  border: 1px solid hsl(0, 0%, 70%);
+  border-radius: 5px;
+  height: 25px;
+  color: hsl(0, 0%, 28%);
+  padding-left: 10px;
+  padding-right: 10px;
+  &:focus {
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid $base-color;
+  }
+}
+
+
+// mango-form Layout.
+form.mango-form-vertical
+{
+  box-sizing: border-box;
+  p {
+    display: block;
+    input {
+      float: right;
+    }
+  }
+}
+
+form.mango-form-horizontal
+{
+  p {
+    display: inline;
+  }
+}
+
+
+// mango-form styling.
+form.mango-form-vertical {
+  box-sizing: border-box;
+  border: $form-border;
+  border-radius: $form-border-radius;
+  padding: $form-padding;
+  font-size: $form-font-size;
+  font-family: $form-font-family;
+
+  p {
+  margin-bottom: $form-vertical-p-margin-bottom;
+   
+    label {
+      color: $form-vertical-label-color; 
+      font-weight: $form-vertical-label-font-weight;
+    }
+    input {
+      &[type="text"] {
+	@extend %textbox;
+      }
+      &[type="password"] {
+	@extend %textbox;
+      }
+      &[type="email"] {
+	@extend %textbox;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    display: block;
+    background-color: $base-color;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+form.mango-form-horizontal 
+{
+  box-sizing: border-box;
+  border: $form-border;
+  border-radius: $form-border-radius;
+  padding: $form-padding;
+  font-size: $form-font-size;
+  font-family: $form-font-family;
+  width: $form-horizontal-width;
+
+  p {
+    margin-right: $form-horizontal-p-margin-right;
+  }
+}
+
+// RESPONSIVE/ADAPTIVE(mobile-large-width) Layout
+form.mango-form-vertical
+{
+  @media (max-width: $mobile-large-width){
+    width: 100%;
+    padding: 0px;
+    padding-top: 20px;
+
+    p {
+      width: 96%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 19px;
+      label {
+      display: block;
+          
+      }
+      input {
+        box-sizing: border-box;
+        display: block;
+        float: none;
+        width: 100%;
+        &[type="text"] {
+	  height: 40px; 
+	  font-size: 17px;
+	}
+	&[type="password"] {
+	  height: 40px;
+	}
+	&[type="email"] {
+	  height: 40px
+	}
+      }
+    }
+    button[type="submit"]{
+      font-size: 19px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 96%;  
+      margin-bottom: 20px;
+    }
+  }
+}
+
+form.mango-form-horizontal
+{
+  @media (max-width: $mobile-large-width) {
+    width: 100%;
+    padding: 0px;
+    padding-top: 20px;
+    p {
+      display: block;
+      float: none;
+    }
+  }
+}
