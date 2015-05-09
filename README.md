@@ -19,3 +19,5 @@ Then just cd into the directory of the project you wish to look at and execute:
 ```
 vagrant up
 ```
+
+Follow any additional instructions in the README.md file of the directory of the project you are in.
