@@ -1,4 +1,4 @@
-# SET UP
+# Set Up
 
 From this directory run the following command(s):
 
