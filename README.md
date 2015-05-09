@@ -6,3 +6,11 @@ This repository contains the Vagrantfiles for my most relevant projects
 * djangoseller
 * neiu-rebuild-old
 * neiu-rebuild-new
+
+### Viewing the project
+
+To view my projects just run the following command(s):
+
+```
+git clone https://github.com/giovannicode/my-projects.git
+```
