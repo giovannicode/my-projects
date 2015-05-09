@@ -14,3 +14,8 @@ To view my projects just run the following command(s):
 ```
 git clone https://github.com/giovannicode/my-projects.git
 ```
+
+Then just cd into the directory of the project you wish to look at and execute: 
+```
+vagrant up
+```
